@@ -29,6 +29,9 @@ return [
         'enabled' => false,
         'path' => base_path('vendor/Caiocesar173/custom-api-modules-laravel/src/Commands/stubs'),
         'files' => [
+            'routes/api/' => 'Routes/api',
+            'routes/web/' => 'Routes/web',
+            'routes/web' => 'Routes/web.php',
             'routes/api' => 'Routes/api.php',
             'scaffold/config' => 'Config/config.php',
             'composer' => 'composer.json',
@@ -37,7 +40,12 @@ return [
             'package' => 'package.json',
         ],
         'replacements' => [
-            'routes/api' => ['LOWER_NAME'],
+            'routes/api'  => ['LOWER_NAME'],
+            'routes/api/' => ['LOWER_NAME'],
+            'routes/web/' => ['LOWER_NAME'],
+            'routes/web'  => ['LOWER_NAME'],
+            'routes/api'  => ['LOWER_NAME'],
+
             'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
             'scaffold/config' => ['STUDLY_NAME'],
             'composer' => [
