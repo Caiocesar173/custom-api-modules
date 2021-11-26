@@ -1,0 +1,38 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Caiocesar173\Utils\Repositories\Eloquent\CustomBaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+
+use Modules\$MODULE$\Repositories\$CLASS_REPOSITORY$;
+use Modules\$MODULE$\Entities\$MODEL$;
+
+/**
+ * Class $CLASS_ELOQUENT$
+ *
+ * @package namespace $NAMESPACE$;
+ */
+class $CLASS_ELOQUENT$ extends CustomBaseRepository implements $CLASS_REPOSITORY$
+{
+    /**
+     * Specify Model class name
+     *
+     * @return string
+     */
+    public function model()
+    {
+        return $MODEL$::class;
+    }
+
+    
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
+    }
+    
+}
