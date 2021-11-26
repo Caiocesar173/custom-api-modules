@@ -1,0 +1,13 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Caiocesar173\Utils\Enum\CustomEnum;
+
+class $NAME$ extends CustomEnum
+{
+     public static function lists()
+    {
+        return [];
+    }
+}

@@ -1,20 +1,8 @@
 {
   "name": "caiocesar173/custom-api-modules-laravel",
-  "description": "Laravel Module management",
-  "keywords": [
-    "modules",
-    "laravel",
-    "module",
-    "rad" 
-  ],
+  "description": "Custom Api Modules management | Based on modules-laravel",
   "license": "MIT",
-  "authors": [
-    {
-      "name": "caiocesar173",
-      "email": "caiocesar173caiocesar173@gmail.com",
-      "role": "Developer"
-    }
-  ],
+  "minimum-stability": "stable",
   "require": {
     "php": ">=7.3",
     "ext-json": "*"
@@ -38,7 +26,11 @@
   },
   "autoload-dev": {
     "psr-4": {
+      "Caiocesar173\\Modules\\": "src/"
     }
+  },
+  "config": {
+    "sort-packages": true
   },
   "extra": {
     "laravel": {
@@ -48,17 +40,14 @@
       "aliases": {
         "Module": "Caiocesar173\\Modules\\Facades\\Module"
       }
-    },
-    "branch-alias": {
-      "dev-master": "8.0-dev"
     }
   },
-  "scripts": {
-    "update-snapshots": "./vendor/bin/phpunit --no-coverage -d --update-snapshots",
-    "test": "vendor/bin/phpunit",
-    "test-coverage": "vendor/bin/phpunit --debug --coverage-html coverage",
-    "pcf": "vendor/bin/php-cs-fixer fix --verbose"
-  },
-  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "caiocesar173",
+      "email": "caiocesar173caiocesar173@gmail.com",
+      "role": "Developer"
+    }
+  ],
   "prefer-stable": true
 }

@@ -3,10 +3,12 @@
 namespace $NAMESPACE$;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Caiocesar173\Utils\Traits\RepositoryServiceProviderTrait;
 
 class $CLASS$ extends ServiceProvider
 {
+    use RepositoryServiceProviderTrait;
+
     /**
      * @var string $moduleName
      */
@@ -38,6 +40,7 @@ class $CLASS$ extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->registerRepository(module_path($this->moduleName), "Modules\\$MODULE$");
     }
 
     /**

@@ -3,9 +3,12 @@
 namespace $NAMESPACE$;
 
 use Illuminate\Support\ServiceProvider;
+use Caiocesar173\Utils\Traits\RepositoryServiceProviderTrait;
 
 class $CLASS$ extends ServiceProvider
 {
+    use RepositoryServiceProviderTrait;
+    
     /**
      * Register the service provider.
      *

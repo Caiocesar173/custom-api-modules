@@ -5,6 +5,7 @@ namespace Caiocesar173\Modules\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Caiocesar173\Modules\Commands;
+use Illuminate\Console\Command;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,7 @@ class ConsoleServiceProvider extends ServiceProvider
         Commands\ControllerMakeCommand::class,
         Commands\DisableCommand::class,
         Commands\DumpCommand::class,
+        Commands\EnumMakeCommand::class,
         Commands\EnableCommand::class,
         Commands\EventMakeCommand::class,
         Commands\JobMakeCommand::class,
@@ -33,6 +35,11 @@ class ConsoleServiceProvider extends ServiceProvider
         Commands\FactoryMakeCommand::class,
         Commands\PolicyMakeCommand::class,
         Commands\RequestMakeCommand::class,
+        Commands\RepositoryMakeCommand::class,
+
+        Commands\RepositoryInterfacesMakeCommand::class,    
+        Commands\RepositoryRepositoriesMakeCommand::class,    
+
         Commands\RuleMakeCommand::class,
         Commands\MigrateCommand::class,
         Commands\MigrateRefreshCommand::class,
