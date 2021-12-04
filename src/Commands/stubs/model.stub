@@ -7,8 +7,8 @@ use Caiocesar173\Utils\Http\Model\CustomModel;
 
 class $CLASS$ extends CustomModel
 {
-    private $table = '';
-    private $primary = 'id';
+    protected $table = '';
+    protected $primary = 'id';
     
     protected $fillable = $FILLABLE$;
     
