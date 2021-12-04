@@ -53,21 +53,23 @@ class RepositoryMakeCommand extends Command
         \Config::set('repository.generator.stubsOverridePath', $basePath->getPath());
         \Config::set('repository.generator.stubsOverridePath', $basePath->getPath());
 
-
+        $folder = $basePath->getPath();
         $pathRepositories = config('repository.generator.paths.repositories');
         $pathInterfaces   = config('repository.generator.paths.interfaces');
-        
+
         $interface = "{$pathInterfaces}";
-        $eloquent  = "{$pathRepositories}/Eloquent";
+        $eloquent  = "{$pathRepositories}\/Eloquent";
 
         \Config::set('repository.generator.paths.repositories', $eloquent);
         \Config::set('repository.generator.paths.interfaces', $interface);
-        
-        $this->info( json_encode( config('repository.generator.paths')));
-        
+
         Artisan::call('make:repository', [
             'name' => $repository
         ]);
+        
+        app()->bind($interface, $eloquent);
+        $this->info( json_encode( config('repository.generator.paths')));
+
     }
 
     /**
