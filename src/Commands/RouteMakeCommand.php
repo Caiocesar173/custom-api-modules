@@ -6,10 +6,9 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputArgument;  
 
-
-class RepositoryMakeCommand extends Command
+class RouteMakeCommand extends Command
 {
-    /**
+   /**
      * The name of argument name.
      *
      * @var string
@@ -21,14 +20,14 @@ class RepositoryMakeCommand extends Command
      *
      * @var string
      */
-    protected $name = 'module:make-repository';
+    protected $name = 'module:make-route';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Creating a Repository';
+    protected $description = 'Create a new route set (web & api) for the specified module.';
     
     /**
      * @return mixed
@@ -37,17 +36,16 @@ class RepositoryMakeCommand extends Command
     {   
         $name = $this->argument('name');
         $module = $this->argument('module');
-        
-        Artisan::call( "module:make-model $name $module"                   , [], $this->getOutput() );
-        Artisan::call( "module:make-repository-interface $name $module"    , [], $this->getOutput() );
-        Artisan::call( "module:make-repository-repositories $name $module" , [], $this->getOutput() );
+
+        Artisan::call( "module:make-route-api $name $module" , [], $this->getOutput() );
+        Artisan::call( "module:make-route-web $name $module" , [], $this->getOutput() );
     }
 
     protected function getArguments()
     {
         return [
-            ['name', InputArgument::REQUIRED, 'Name of the Repository'],
-            ['module', InputArgument::REQUIRED, 'Witch module this repository will be added'],
+            ['name', InputArgument::REQUIRED, 'Name of the Routes'],
+            ['module', InputArgument::REQUIRED, 'Witch module this route will be added'],
         ];
     }
 

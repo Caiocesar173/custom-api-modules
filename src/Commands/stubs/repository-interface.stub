@@ -2,7 +2,7 @@
 
 namespace $NAMESPACE$;
 
-use Caiocesar173\Utils\Repositories\Eloquent\CustomBaseRepository;
+use Caiocesar173\Utils\Abstracts\RepositoryAbstract;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 use Modules\$MODULE$\Repositories\$CLASS_REPOSITORY$;
@@ -13,7 +13,7 @@ use Modules\$MODULE$\Entities\$MODEL$;
  *
  * @package namespace $NAMESPACE$;
  */
-class $CLASS_ELOQUENT$ extends CustomBaseRepository implements $CLASS_REPOSITORY$
+class $CLASS_ELOQUENT$ extends RepositoryAbstract implements $CLASS_REPOSITORY$
 {
     /**
      * Specify Model class name

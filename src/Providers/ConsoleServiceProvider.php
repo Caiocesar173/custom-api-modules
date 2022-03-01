@@ -34,13 +34,21 @@ class ConsoleServiceProvider extends ServiceProvider
         Commands\ModuleMakeCommand::class,
         Commands\FactoryMakeCommand::class,
         Commands\PolicyMakeCommand::class,
-        Commands\RequestMakeCommand::class,
-        Commands\RepositoryMakeCommand::class,
 
+        Commands\RequestMakeCommand::class,
+        Commands\ApiResourceMakeCommand::class,
+        Commands\RepositoryMakeCommand::class,
         Commands\RepositoryInterfacesMakeCommand::class,    
         Commands\RepositoryRepositoriesMakeCommand::class,    
+        
+        Commands\PermissionSeederMakeCommand::class,
 
+        Commands\RouteApiMakeCommand::class,
+        Commands\RouteWebMakeCommand::class,
+        Commands\RouteMakeCommand::class,
+        
         Commands\RuleMakeCommand::class,
+
         Commands\MigrateCommand::class,
         Commands\MigrateRefreshCommand::class,
         Commands\MigrateResetCommand::class,
@@ -53,9 +61,12 @@ class ConsoleServiceProvider extends ServiceProvider
         Commands\PublishConfigurationCommand::class,
         Commands\PublishMigrationCommand::class,
         Commands\PublishTranslationCommand::class,
+        
         Commands\SeedCommand::class,
         Commands\SeedMakeCommand::class,
         Commands\SetupCommand::class,
+        Commands\ServiceMakeCommand::class,
+        
         Commands\UnUseCommand::class,
         Commands\UpdateCommand::class,
         Commands\UseCommand::class,

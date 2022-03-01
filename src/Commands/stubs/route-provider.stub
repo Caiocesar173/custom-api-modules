@@ -47,7 +47,8 @@ class $CLASS$ extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
+        Route::prefix('$LOWER_NAME$')
+            ->middleware(['web', 'Log:web.$LOWER_NAME$'])
             ->namespace($this->moduleNamespace)
             ->group(module_path('$MODULE$', '$WEB_ROUTES_PATH$'));
     }
@@ -61,8 +62,8 @@ class $CLASS$ extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
-            ->middleware('api')
+        Route::prefix('api.$LOWER_NAME$')
+            ->middleware(['api', 'Log:api.$LOWER_NAME$'])
             ->namespace($this->moduleNamespace)
             ->group(module_path('$MODULE$', '$API_ROUTES_PATH$'));
     }

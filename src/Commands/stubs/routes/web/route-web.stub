@@ -2,6 +2,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware(['BackLog:web.$LOWER_NAME$', 'web'])->prefix('$LOWER_NAME$')->group(function() {
-    Route::get('/', '$STUDLY_NAME$Controller@index');
-});
+Route::$MIDDLEWARE$prefix('$LOWER_NAME$')->group(function() {
+    
+}); 

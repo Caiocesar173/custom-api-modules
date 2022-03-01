@@ -1,0 +1,24 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Caiocesar173\Utils\Abstracts\ServiceAbstract;
+use Caiocesar173\Utils\Abstracts\RepositoryAbstract;
+use Caiocesar173\Utils\Abstracts\FormRequestAbstract;
+
+use Modules\$MODULE$\Http\Requests\$CLASS$Request;
+use Modules\$MODULE$\Repositories\$CLASS$Repository;
+
+
+class $CLASS$Service extends ServiceAbstract
+{
+    public function getRepository(): RepositoryAbstract
+    {
+        return app($CLASS$Repository::class);
+    }
+
+    public function getRequest(): FormRequestAbstract
+    {
+        return app($CLASS$Request::class);
+    }
+}

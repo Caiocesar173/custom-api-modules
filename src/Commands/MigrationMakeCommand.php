@@ -144,8 +144,12 @@ class MigrationMakeCommand extends GeneratorCommand
     }
 
     public function getClass()
-    {
-        return $this->getClassName();
+    {   
+        $name = $this->argument('name');
+        if(!str_contains($name, "create"))
+            $name = "create_".strtolower($name)."_table";
+
+        return Str::studly($name);
     }
 
     /**

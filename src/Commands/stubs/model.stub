@@ -2,12 +2,12 @@
 
 namespace $NAMESPACE$;
 
-use Caiocesar173\Utils\Http\Model\CustomModel;
+use Caiocesar173\Utils\Abstracts\ModelAbstract;
 
 
-class $CLASS$ extends CustomModel
+class $CLASS$ extends ModelAbstract
 {
-    protected $table = '';
+    protected $table = '$TABLE$';
     protected $primary = 'id';
     
     protected $fillable = $FILLABLE$;

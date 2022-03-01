@@ -66,6 +66,7 @@ class ControllerMakeCommand extends GeneratorCommand
             'NAME'              => $this->getModuleName(),
             'STUDLY_NAME'       => $module->getStudlyName(),
             'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
+            'SERVICE'           => $this->getServiceName(),
         ]))->render();
     }
 
@@ -78,7 +79,7 @@ class ControllerMakeCommand extends GeneratorCommand
     {
         return [
             ['controller', InputArgument::REQUIRED, 'The name of the controller class.'],
-            ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
+            ['module', InputArgument::REQUIRED, 'The name of module will be used.'],
         ];
     }
 
@@ -89,7 +90,7 @@ class ControllerMakeCommand extends GeneratorCommand
     {
         return [
             ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain controller', null],
-            ['api', null, InputOption::VALUE_NONE, 'Exclude the create and edit methods from the controller.'],
+            ['regular', null, InputOption::VALUE_NONE, 'Exclude the create and edit methods from the controller.'],
         ];
     }
 
@@ -105,6 +106,20 @@ class ControllerMakeCommand extends GeneratorCommand
         }
 
         return $controller;
+    }
+
+    /**
+     * @return array|string
+     */
+    protected function getServiceName()
+    {
+        $service = Str::studly($this->argument('controller'));
+
+        if (Str::contains(strtolower($service), 'controller') === true) 
+            $service = strtolower($service);
+            str_replace('controller', 'Service', $service);
+
+        return $service."Service";
     }
 
     /**
@@ -130,10 +145,10 @@ class ControllerMakeCommand extends GeneratorCommand
     {
         if ($this->option('plain') === true) {
             $stub = '/controller-plain.stub';
-        } elseif ($this->option('api') === true) {
-            $stub = '/controller-api.stub';
-        } else {
+        } elseif ($this->option('regular') === true) {
             $stub = '/controller.stub';
+        } else {
+            $stub = '/controller-api.stub';
         }
 
         return $stub;
