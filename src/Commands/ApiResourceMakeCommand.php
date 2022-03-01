@@ -159,12 +159,13 @@ class ApiResourceMakeCommand extends Command
     protected function getFilable($name)
     {
         $name = strtolower($name);
+        $module = strtolower($this->argument('module'));
         $nameFormated = Str::studly($name);
 
         return [
             [
                 'name' => "Permission for Accessing the Resource $nameFormated",
-                'code' => "$name",
+                'code' => "$module.$name",
                 'type' => PermissionItemTypeEnum::ITEM,
                 'status' => StatusEnum::ACTIVE,
                 'icon' => NULL,
@@ -172,7 +173,7 @@ class ApiResourceMakeCommand extends Command
             ],
             [
                 'name' => "Permission for Listing and Searching in the Resource $nameFormated",
-                'code' => "$name.show",
+                'code' => "$module.$name.show",
                 'type' => PermissionItemTypeEnum::ROUTE,
                 'status' => StatusEnum::ACTIVE,
                 'icon' => NULL,
@@ -180,7 +181,7 @@ class ApiResourceMakeCommand extends Command
             ],
             [
                 'name' => "Permission for Listing, Searching and Exporting in table format on the Resource $nameFormated",
-                'code' => "$name.index",
+                'code' => "$module.$name.index",
                 'type' => PermissionItemTypeEnum::ROUTE,
                 'status' => StatusEnum::ACTIVE,
                 'icon' => NULL,
@@ -188,7 +189,7 @@ class ApiResourceMakeCommand extends Command
             ],
             [
                 'name' => "Permission for Creating in the Resource $nameFormated",
-                'code' => "$name.store",
+                'code' => "$module.$name.store",
                 'type' => PermissionItemTypeEnum::ROUTE,
                 'status' => StatusEnum::ACTIVE,
                 'icon' => NULL,
@@ -196,7 +197,7 @@ class ApiResourceMakeCommand extends Command
             ],
             [
                 'name' => "Permission for Editing in the Resource $nameFormated",
-                'code' => "$name.update",
+                'code' => "$module.$name.update",
                 'type' => PermissionItemTypeEnum::ROUTE,
                 'status' => StatusEnum::ACTIVE,
                 'icon' => NULL,
@@ -204,7 +205,7 @@ class ApiResourceMakeCommand extends Command
             ],
             [
                 'name' => "Permission for Deleting in the Resource $nameFormated",
-                'code' => "$name.destroy",
+                'code' => "$module.$name.destroy",
                 'type' => PermissionItemTypeEnum::ROUTE,
                 'status' => StatusEnum::ACTIVE,
                 'icon' => NULL,
@@ -212,7 +213,7 @@ class ApiResourceMakeCommand extends Command
             ],
             [
                 'name' => "Permission for Recovering in the Resource $nameFormated",
-                'code' => "$name.recover",
+                'code' => "$module.$name.recover",
                 'type' => PermissionItemTypeEnum::ROUTE,
                 'status' => StatusEnum::ACTIVE,
                 'icon' => NULL,
