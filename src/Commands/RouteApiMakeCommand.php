@@ -65,7 +65,7 @@ class RouteApiMakeCommand extends GeneratorCommand
             'LOWER_CONTROLLER' => $this->getFileName(),
             'CONTROLLER' => $this->getModelName(),
             'LOWER_NAME' =>  $this->getFileName(),
-
+            'LOWER_MODULE' => $this->getModel(),
             'NALOWER_NAMEMESPACE' => $this->getClassNamespace($module),
             'CLASS'     => $this->getModelName(),
         ]));
@@ -104,6 +104,15 @@ class RouteApiMakeCommand extends GeneratorCommand
             str_replace('route', '', $name);
 
         return Str::studly($name);
+    }
+
+    /**
+     * @return mixed|string
+     */
+    private function getModel()
+    {   
+        $name = Str::studly($this->argument('module'));
+        return strtolower($name);
     }
 
     /**
