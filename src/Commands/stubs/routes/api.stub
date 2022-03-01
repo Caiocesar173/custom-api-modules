@@ -21,7 +21,7 @@
 |   use Illuminate\Support\Facades\Route;
 |
 |
-|   Route::middleware(['BackLog:web', 'web'])->group(function() {
+|   Route::prefix('route_description')->group(function() {
 |       Route::get('/', [Controller::class, 'index']);
 |   });
 */

@@ -2,9 +2,10 @@
 
 namespace $NAMESPACE$;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Caiocesar173\Utils\Abstracts\FormRequestAbstract;
 
-class $CLASS$ extends FormRequest
+
+class $CLASS$ extends FormRequestAbstract
 {
     /**
      * Get the validation rules that apply to the request.
@@ -13,18 +14,50 @@ class $CLASS$ extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        switch ( $this->method() ) 
+        {
+            case 'GET':
+                return $this->getRules();
+
+            case 'POST':
+                return $this->postRules();
+
+            case 'PUT':
+                return $this->putRules();
+
+            case 'DELETE':
+                return $this->deleteRules();
+
+            default:
+                return $this->postRules();
+        }
     }
 
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+    protected function getRules()
     {
-        return true;
+        $rules = [];
+
+        return $rules;
+    }
+
+    protected function postRules()
+    {
+        $rules = [];
+
+        return $rules;
+    }
+
+    protected function putRules()
+    {
+        $rules = [];
+
+        return $rules;
+    }
+
+    protected function deleteRules()
+    {
+        $rules = [];
+
+        return $rules;
     }
 }

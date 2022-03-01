@@ -8,7 +8,7 @@ use Caiocesar173\Modules\Support\Stub;
 use Caiocesar173\Modules\Traits\ModuleCommandTrait;
 use Symfony\Component\Console\Input\InputArgument;
 
-class RequestMakeCommand extends GeneratorCommand
+class RouteWebMakeCommand extends GeneratorCommand
 {
     use ModuleCommandTrait;
 
@@ -24,20 +24,20 @@ class RequestMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'module:make-request';
+    protected $name = 'module:make-route-web';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new form request class for the specified module.';
+    protected $description = 'Create a new route for the specified module.';
 
     public function getDefaultNamespace() : string
     {
         $module = $this->laravel['modules'];
 
-        return $module->config('paths.generator.request.namespace') ?: $module->config('paths.generator.request.path', 'Http/Requests');
+        return $module->config('paths.generator.route.namespace') ?: $module->config('paths.generator.route.path', 'Http/Routes');
     }
 
     /**
@@ -48,7 +48,7 @@ class RequestMakeCommand extends GeneratorCommand
     protected function getArguments()
     {
         return [
-            ['name', InputArgument::REQUIRED, 'The name of the form request class.'],
+            ['name', InputArgument::REQUIRED, 'The name of the form route class.'],
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
@@ -60,17 +60,41 @@ class RequestMakeCommand extends GeneratorCommand
     {
         $module = $this->laravel['modules']->findOrFail($this->getModuleName());
 
-        return (new Stub('/request.stub', [
-            'NAMESPACE' => $this->getClassNamespace($module),
+        $stub = (new Stub('/routes/web/route-web.stub', [
+            'MIDDLEWARE' => $this->getMiddlewares(),
+            'LOWER_CONTROLLER' => $this->getFileName(),
+            'CONTROLLER' => $this->getModelName(),
+            'LOWER_NAME' =>  $this->getFileName(),
+
+            'NALOWER_NAMEMESPACE' => $this->getClassNamespace($module),
             'CLASS'     => $this->getModelName(),
-        ]))->render();
+        ]));
+
+
+        return $stub->render();
+    }
+    
+    /**
+     * @return mixed|string
+     */
+    private function getMiddlewares()
+    {   
+        $name = '';
+
+        return Str::studly($name);
     }
 
+
+    /**
+     * @return mixed|string
+     */
     private function getModelName()
-    {
-        $name = $this->argument('name');
-        if(!str_contains($name, "Request"))
-            $name = $name."Request";
+    {   
+        $name = Str::studly($this->argument('name'));
+
+        if (Str::contains(strtolower($name), 'route') === true) 
+            $name = strtolower($name);
+            str_replace('route', '', $name);
 
         return Str::studly($name);
     }
@@ -82,21 +106,18 @@ class RequestMakeCommand extends GeneratorCommand
     {
         $path = $this->laravel['modules']->getModulePath($this->getModuleName());
 
-        $requestPath = GenerateConfigReader::read('request');
+        $routePath = GenerateConfigReader::read('route');
 
-        return $path . $requestPath->getPath() . '/' . $this->getFileName() . '.php';
+        return $path . $routePath->getPath() . 'Routes/web/' . $this->getFileName() . '.php';
     }
 
     /**
      * @return string
      */
     private function getFileName()
-    {
+    {   
         $name = Str::studly($this->argument('name'));
-        if (Str::contains(strtolower($name), 'request') === false) {
-            $name .= 'Request';
-        }
 
-        return $name;
+        return strtolower($name);
     }
 }

@@ -4,9 +4,9 @@ namespace $CLASS_NAMESPACE$;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Renderable;
-use Caiocesar173\Utils\Http\Controllers\CustomController;
+use Caiocesar173\Utils\Abstracts\WebControllerAbstract;
 
-class $CLASS$ extends CustomController
+class $CLASS$ extends WebControllerAbstract
 {
     public function __construct()
     {

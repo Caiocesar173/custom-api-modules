@@ -89,6 +89,7 @@ class ModelMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
+            ['table', null, InputOption::VALUE_OPTIONAL, 'The table associated migration.', null],
             ['fillable', null, InputOption::VALUE_OPTIONAL, 'The fillable attributes.', null],
             ['migration', 'm', InputOption::VALUE_NONE, 'Flag to create associated migrations', null],
             ['controller', 'c', InputOption::VALUE_NONE, 'Flag to create associated controllers', null],
@@ -133,6 +134,7 @@ class ModelMakeCommand extends GeneratorCommand
             'FILLABLE'          => $this->getFillable(),
             'NAMESPACE'         => $this->getClassNamespace($module),
             'CLASS'             => $this->getClass(),
+            'TABLE'             => $this->getTable(),
             'LOWER_NAME'        => $module->getLowerName(),
             'MODULE'            => $this->getModuleName(),
             'STUDLY_NAME'       => $module->getStudlyName(),
@@ -167,13 +169,29 @@ class ModelMakeCommand extends GeneratorCommand
     {
         $fillable = $this->option('fillable');
 
-        if (!is_null($fillable)) {
+        if (!is_null($fillable)) 
+        {
+            if(is_array($fillable))
+                return $fillable;
+            
             $arrays = explode(',', $fillable);
-
             return json_encode($arrays);
         }
 
         return '[]';
+    }
+
+    /**
+     * @return string
+     */
+    private function getTable()
+    {
+        $table = $this->option('table');
+
+        if (is_null($table))
+            return strtolower($this->argument('model'));
+        
+        return $table;
     }
 
     /**

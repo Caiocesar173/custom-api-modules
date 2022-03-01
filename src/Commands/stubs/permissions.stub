@@ -1,0 +1,12 @@
+{
+    "permissions" : [
+        
+    ],
+
+    "group": [
+        "Administrador",
+        "Presidência",
+        "Cliente",
+        "Teste"
+    ]
+}

@@ -2,11 +2,12 @@
 
 namespace Caiocesar173\Modules\Commands;
 
-use Illuminate\Console\Command;
 use Caiocesar173\Modules\Contracts\ActivatorInterface;
 use Caiocesar173\Modules\Generators\ModuleGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Console\Command;
 
 class ModuleMakeCommand extends Command
 {
@@ -43,6 +44,10 @@ class ModuleMakeCommand extends Command
                 ->setType($this->getModuleType())
                 ->setActive(!$this->option('disabled'))
                 ->generate();
+
+            $module = $name;
+            if( env('UTILS_PERMISSION_ENABLE') === TRUE ) 
+                Artisan::call( "module:make-permission-seeder $module" ,[], $this->getOutput() );
 
             if ($code === E_ERROR) {
                 $success = false;

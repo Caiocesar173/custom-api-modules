@@ -29,8 +29,6 @@ return [
         'enabled' => false,
         'path' => base_path('vendor/Caiocesar173/custom-api-modules-laravel/src/Commands/stubs'),
         'files' => [
-            'routes/api/route-api' => 'Routes/api/route-api.php',
-            'routes/web/route-web' => 'Routes/web/route-web.php',
             'routes/web'  => 'Routes/web.php',
             'routes/api'  => 'Routes/api.php',
             'scaffold/config' => 'Config/config.php',
@@ -38,14 +36,14 @@ return [
             'assets/js/app' => 'Resources/assets/js/app.js',
             'assets/sass/app' => 'Resources/assets/sass/app.scss',
             'documentation' => 'Documentation/documentation.json',
+            'permissions' => 'Database/Seeders/permission.json',
             'package' => 'package.json',
         ],
         'replacements' => [
-            'documentation'  => ['LOWER_NAME'],
             'routes/web'  => ['LOWER_NAME'],
             'routes/api'  => ['LOWER_NAME'],
-            'routes/web/route-web'  => ['LOWER_NAME'],
-            'routes/api/route-api'  => ['LOWER_NAME'],
+            'routes/web/web'  => ['LOWER_NAME'],
+            'routes/api/api'  => ['LOWER_NAME'],
             'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
             'scaffold/config' => ['STUDLY_NAME'],
             'composer' => [
@@ -107,6 +105,7 @@ return [
             'enum'                  => ['path' => 'Enums'                   , 'generate' => true  ],
             'migration'             => ['path' => 'Database/Migrations'     , 'generate' => true  ],
             'seeder'                => ['path' => 'Database/Seeders'        , 'generate' => true  ],
+            'service'               => ['path' => 'Services'                , 'generate' => true  ],
             'factory'               => ['path' => 'Database/factories'      , 'generate' => true  ],
             'model'                 => ['path' => 'Entities'                , 'generate' => true  ],
             'routes'                => ['path' => 'Routes'                  , 'generate' => true  ],
@@ -114,9 +113,14 @@ return [
             'filter'                => ['path' => 'Http/Middleware'         , 'generate' => true  ],
             'request'               => ['path' => 'Http/Requests'           , 'generate' => true  ],
             'provider'              => ['path' => 'Providers'               , 'generate' => true  ],
+            
+            'routes-api'            => ['path' => 'Routes/api'              , 'generate' => true  ],
+            'routes-web'            => ['path' => 'Routes/web'              , 'generate' => true  ],
+
             'assets'                => ['path' => 'Resources/assets'        , 'generate' => true  ],
             'lang'                  => ['path' => 'Resources/lang'          , 'generate' => true  ],
             'views'                 => ['path' => 'Resources/views'         , 'generate' => false ],
+
             'test'                  => ['path' => 'Tests/Unit'              , 'generate' => true  ],
             'test-feature'          => ['path' => 'Tests/Feature'           , 'generate' => true  ],
             'repository'            => ['path' => 'Repositories'            , 'generate' => true  ],
@@ -167,6 +171,7 @@ return [
         Commands\PolicyMakeCommand::class,
         Commands\RequestMakeCommand::class,
         
+        Commands\PermissionSeederMakeCommand::class,
         Commands\RepositoryMakeCommand::class,    
         Commands\RepositoryInterfacesMakeCommand::class,    
         Commands\RepositoryRepositoriesMakeCommand::class,    
@@ -183,9 +188,12 @@ return [
         Commands\PublishConfigurationCommand::class,
         Commands\PublishMigrationCommand::class,
         Commands\PublishTranslationCommand::class,
+
+        Commands\ServiceMakeCommand::class,
         Commands\SeedCommand::class,
         Commands\SeedMakeCommand::class,
         Commands\SetupCommand::class,
+
         Commands\UnUseCommand::class,
         Commands\UpdateCommand::class,
         Commands\UseCommand::class,

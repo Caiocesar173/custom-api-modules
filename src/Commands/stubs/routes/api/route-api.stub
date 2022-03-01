@@ -1,7 +1,18 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-
-Route::middleware(['BackLog:api.$LOWER_NAME$', 'api'])->prefix('api.$LOWER_NAME$')->group(function() {
-    Route::get('/', '$STUDLY_NAME$Controller@index');
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+Route::$MIDDLEWARE$prefix('')->as('')->group(function() {
+    Route::apiResource('$LOWER_CONTROLLER$', '$CONTROLLER$Controller');
+    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/audit'   ,['as' => '$LOWER_CONTROLLER$.recover' ,'uses' => '$CONTROLLER$Controller@audit'   ]);
+    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/recover' ,['as' => '$LOWER_CONTROLLER$.recover' ,'uses' => '$CONTROLLER$Controller@recover' ]);
 });

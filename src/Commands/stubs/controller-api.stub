@@ -2,59 +2,16 @@
 
 namespace $CLASS_NAMESPACE$;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use Caiocesar173\Utils\Abstracts\ServiceAbstract;
+use Caiocesar173\Utils\Abstracts\ApiControllerAbstract;
 
-class $CLASS$ extends Controller
+use Modules\$MODULE$\Services\$SERVICE$;
+
+
+class $CLASS$ extends ApiControllerAbstract
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+    protected function getService(): ServiceAbstract
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        return app($SERVICE$::class);
     }
 }
