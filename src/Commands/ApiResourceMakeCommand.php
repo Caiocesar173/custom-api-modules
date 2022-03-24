@@ -219,6 +219,30 @@ class ApiResourceMakeCommand extends Command
                 'icon' => NULL,
                 'icon_type' => NULL
             ],
+            [
+                'name' => "Permission for Auditing in the Resource $nameFormated",
+                'code' => "$module.$name.audit",
+                'type' => PermissionItemTypeEnum::ROUTE,
+                'status' => StatusEnum::ACTIVE,
+                'icon' => NULL,
+                'icon_type' => NULL
+            ],
+            [
+                'name' => "Permission for Blocking in the Resource $nameFormated",
+                'code' => "$module.$name.block",
+                'type' => PermissionItemTypeEnum::ROUTE,
+                'status' => StatusEnum::ACTIVE,
+                'icon' => NULL,
+                'icon_type' => NULL
+            ],
+            [
+                'name' => "Permission for Unblocking in the Resource $nameFormated",
+                'code' => "$module.$name.unblock",
+                'type' => PermissionItemTypeEnum::ROUTE,
+                'status' => StatusEnum::ACTIVE,
+                'icon' => NULL,
+                'icon_type' => NULL
+            ],
         ];
     }
 }
