@@ -33,7 +33,7 @@ class RouteApiMakeCommand extends GeneratorCommand
      */
     protected $description = 'Create a new route for the specified module.';
 
-    public function getDefaultNamespace() : string
+    public function getDefaultNamespace(): string
     {
         $module = $this->laravel['modules'];
 
@@ -72,21 +72,30 @@ class RouteApiMakeCommand extends GeneratorCommand
 
         return $stub->render();
     }
-    
+
     /**
      * @return mixed|string
      */
     private function getMiddlewares()
-    {   
+    {
         $name = '';
-     
-        if (env('UTILS_AUTHENTICATION_ENABLE')) 
-        {
-            $name = "'AuthApi', 'SetUserApi'";
 
-            if (env('UTILS_PERMISSION_ENABLE')) 
-               $name = "$name, 'AccessControl'";
-    
+        if (env('UTILS_LOGS_ENABLE'))
+        {
+            if($name == '')
+                $name = "'Log:api.".$this->getFileName()."'";
+            else
+                $name = "$name, 'Log:api.".$this->getFileName()."'";
+        }
+
+        if (env('UTILS_AUTHENTICATION_ENABLE')) {
+            if($name == '')
+                $name = "'AuthApi', 'SetUserApi'";
+            else
+                $name = "$name, 'AuthApi', 'SetUserApi'";
+
+            if (env('UTILS_PERMISSION_ENABLE'))
+                $name = "$name, 'AccessControl'";
         }
         return "middleware([$name])->";
     }
@@ -96,12 +105,12 @@ class RouteApiMakeCommand extends GeneratorCommand
      * @return mixed|string
      */
     private function getModelName()
-    {   
+    {
         $name = Str::studly($this->argument('name'));
 
-        if (Str::contains(strtolower($name), 'route') === true) 
+        if (Str::contains(strtolower($name), 'route') === true)
             $name = strtolower($name);
-            str_replace('route', '', $name);
+        str_replace('route', '', $name);
 
         return Str::studly($name);
     }
@@ -110,7 +119,7 @@ class RouteApiMakeCommand extends GeneratorCommand
      * @return mixed|string
      */
     private function getModel()
-    {   
+    {
         $name = Str::studly($this->argument('module'));
         return strtolower($name);
     }
@@ -131,7 +140,7 @@ class RouteApiMakeCommand extends GeneratorCommand
      * @return string
      */
     private function getFileName()
-    {   
+    {
         $name = Str::studly($this->argument('name'));
 
         return strtolower($name);
