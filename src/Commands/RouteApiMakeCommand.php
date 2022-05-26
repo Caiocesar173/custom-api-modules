@@ -90,9 +90,9 @@ class RouteApiMakeCommand extends GeneratorCommand
 
         if (env('UTILS_AUTHENTICATION_ENABLE')) {
             if($name == '')
-                $name = "'AuthApi', 'SetUserApi'";
+                $name = "'auth:api'";
             else
-                $name = "$name, 'AuthApi', 'SetUserApi'";
+                $name = "$name, 'auth:api'";
 
             if (env('UTILS_PERMISSION_ENABLE'))
                 $name = "$name, 'AccessControl'";
