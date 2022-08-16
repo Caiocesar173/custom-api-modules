@@ -175,10 +175,14 @@ class ModelMakeCommand extends GeneratorCommand
                 return $fillable;
             
             $arrays = explode(',', $fillable);
+            
+            array_push($arrays,  'status');
             return json_encode($arrays);
         }
 
-        return '[]';
+        return "[
+            'status',
+        ]";
     }
 
     /**

@@ -76,27 +76,13 @@ class RouteApiMakeCommand extends GeneratorCommand
     /**
      * @return mixed|string
      */
-    private function getMiddlewares()
+    private function getMiddlewares($name = '')
     {
-        $name = '';
+        if ($name == '')
+            $name = "'Log:api." . $this->getFileName() . "', 'auth:api', 'AccessControl'";
+        else
+            $name = "$name, 'Log:api." . $this->getFileName() . "', 'auth:api', 'AccessControl'";
 
-        if (env('UTILS_LOGS_ENABLE'))
-        {
-            if($name == '')
-                $name = "'Log:api.".$this->getFileName()."'";
-            else
-                $name = "$name, 'Log:api.".$this->getFileName()."'";
-        }
-
-        if (env('UTILS_AUTHENTICATION_ENABLE')) {
-            if($name == '')
-                $name = "'auth:api'";
-            else
-                $name = "$name, 'auth:api'";
-
-            if (env('UTILS_PERMISSION_ENABLE'))
-                $name = "$name, 'AccessControl'";
-        }
         return "middleware([$name])->";
     }
 

@@ -51,7 +51,6 @@ class ApiResourceMakeCommand extends Command
         $permission->permissions = $fillable;
 
         $this->saveModelToFile($permission, $permission_path);
-        //if (env('UTILS_PERMISSION_ENABLE') === TRUE)
 
         Artisan::call("module:make-service $name $module", [], $this->getOutput());
         Artisan::call("module:make-controller $name $module", [], $this->getOutput());
@@ -180,7 +179,7 @@ class ApiResourceMakeCommand extends Command
                 'icon_type' => NULL
             ],
             [
-                'name' => "Permission for Listing, Searching and Exporting in table format on the Resource $nameFormated",
+                'name' => "Permission for Listing, Searching and Exporting in datatable format on the Resource $nameFormated",
                 'code' => "$module.$name.index",
                 'type' => PermissionItemTypeEnum::ROUTE,
                 'status' => StatusEnum::ACTIVE,
@@ -238,6 +237,22 @@ class ApiResourceMakeCommand extends Command
             [
                 'name' => "Permission for Unblocking in the Resource $nameFormated",
                 'code' => "$module.$name.unblock",
+                'type' => PermissionItemTypeEnum::ROUTE,
+                'status' => StatusEnum::ACTIVE,
+                'icon' => NULL,
+                'icon_type' => NULL
+            ],
+            [
+                'name' => "Permission for Inactivate in the Resource $nameFormated",
+                'code' => "$module.$name.inactivate",
+                'type' => PermissionItemTypeEnum::ROUTE,
+                'status' => StatusEnum::ACTIVE,
+                'icon' => NULL,
+                'icon_type' => NULL
+            ],
+            [
+                'name' => "Permission for Activate in the Resource $nameFormated",
+                'code' => "$module.$name.activate",
                 'type' => PermissionItemTypeEnum::ROUTE,
                 'status' => StatusEnum::ACTIVE,
                 'icon' => NULL,

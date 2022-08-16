@@ -1,5 +1,7 @@
 <?php
 
+use Caiocesar173\Utils\Enum\StatusEnum;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,6 +18,7 @@ class $CLASS$ extends Migration
         Schema::create('$TABLE$', function (Blueprint $table) {
             $table->uuid('id')->primary();
 $FIELDS$
+            $table->enum('status', StatusEnum::lists())->default(StatusEnum::ACTIVE);
             $table->timestamps();
         });
     }

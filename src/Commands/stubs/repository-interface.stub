@@ -2,11 +2,13 @@
 
 namespace $NAMESPACE$;
 
-use Caiocesar173\Utils\Abstracts\RepositoryAbstract;
 use Prettus\Repository\Criteria\RequestCriteria;
 
-use Modules\$MODULE$\Repositories\$CLASS_REPOSITORY$;
+use Caiocesar173\Utils\Criterias\VisibleCriteria;
+use Caiocesar173\Utils\Abstracts\RepositoryAbstract;
+
 use Modules\$MODULE$\Entities\$MODEL$;
+use Modules\$MODULE$\Repositories\$CLASS_REPOSITORY$;
 
 /**
  * Class $CLASS_ELOQUENT$
@@ -30,6 +32,7 @@ class $CLASS_ELOQUENT$ extends RepositoryAbstract implements $CLASS_REPOSITORY$
      */
     public function boot()
     {
+        $this->pushCriteria(app(VisibleCriteria::class));
         $this->pushCriteria(app(RequestCriteria::class));
     }
     
