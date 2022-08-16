@@ -1,4 +1,9 @@
-# Laravel API Modules
+<p align="center" id="project-title">
+    <img width="200" src="https://cacodes.com.br/img/logo/logo.svg" align="center" alt="GitHub Readme Stats" />
+</p>
+
+# Laravel Modules
+---
 
 This is a Laravel package which created to manage your large Laravel app using modules. The modules in this package are made for API services. 
 This package is based uppon, [laravel-modules](https://github.com/nWidart/laravel-modules).
