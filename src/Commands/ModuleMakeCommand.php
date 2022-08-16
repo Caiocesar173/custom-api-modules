@@ -46,8 +46,7 @@ class ModuleMakeCommand extends Command
                 ->generate();
 
             $module = $name;
-            if( env('UTILS_PERMISSION_ENABLE') === TRUE ) 
-                Artisan::call( "module:make-permission-seeder $module" ,[], $this->getOutput() );
+            Artisan::call( "module:make-permission-seeder $module" ,[], $this->getOutput() );
 
             if ($code === E_ERROR) {
                 $success = false;
