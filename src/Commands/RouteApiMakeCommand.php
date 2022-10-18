@@ -63,10 +63,11 @@ class RouteApiMakeCommand extends GeneratorCommand
         $stub = (new Stub('/routes/api/route-api.stub', [
             'MIDDLEWARE' => $this->getMiddlewares(),
             'LOWER_CONTROLLER' => $this->getFileName(),
-            'CONTROLLER' => $this->getModelName(),
+            'CONTROLLER' => $this->getModelName().'Controller',
+            'CONTROLLERNAMEMESPACE' => $this->getControllerClassNamespace($module),
             'LOWER_NAME' =>  $this->getFileName(),
             'LOWER_MODULE' => $this->getModel(),
-            'NALOWER_NAMEMESPACE' => $this->getClassNamespace($module),
+            'NAMEMESPACE' => $this->getClassNamespace($module),
             'CLASS'     => $this->getModelName(),
         ]));
 
@@ -130,5 +131,33 @@ class RouteApiMakeCommand extends GeneratorCommand
         $name = Str::studly($this->argument('name'));
 
         return strtolower($name);
+    }
+
+        /**
+     * Get class namespace.
+     *
+     * @param \Caiocesar173\Modules\Module $module
+     *
+     * @return string
+     */
+    public function getControllerClassNamespace($module)
+    {
+        $extra = str_replace($this->getClass(), '', $this->argument($this->argumentName));
+
+        $extra = str_replace('/', '\\', $extra);
+
+        $namespace = $this->laravel['modules']->config('namespace');
+
+        $namespace .= '\\' . $module->getStudlyName();
+
+        $namespace .= '\\' . $this->getDefaultNamespace();
+
+        $namespace .= '\\' . $extra;
+
+        $namespace = str_replace('/', '\\', $namespace);
+
+        if(str_contains($namespace, 'Routes')) $namespace = str_replace('Routes', 'Controllers', $namespace);
+
+        return trim($namespace, '\\');
     }
 }

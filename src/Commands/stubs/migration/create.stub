@@ -17,9 +17,10 @@ class $CLASS$ extends Migration
     {
         Schema::create('$TABLE$', function (Blueprint $table) {
             $table->uuid('id')->primary();
-$FIELDS$
+            $FIELDS$
             $table->enum('status', StatusEnum::lists())->default(StatusEnum::ACTIVE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

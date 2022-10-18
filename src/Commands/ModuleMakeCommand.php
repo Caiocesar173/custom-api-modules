@@ -45,9 +45,7 @@ class ModuleMakeCommand extends Command
                 ->setActive(!$this->option('disabled'))
                 ->generate();
 
-            $module = $name;
-            Artisan::call( "module:make-permission-seeder $module" ,[], $this->getOutput() );
-
+            // Artisan::call( "module:make-permission-seeder $name" ,[], $this->getOutput() );
             if ($code === E_ERROR) {
                 $success = false;
             }

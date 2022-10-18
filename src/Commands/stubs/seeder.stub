@@ -2,10 +2,10 @@
 
 namespace $NAMESPACE$;
 
-use Illuminate\Database\Seeder;
+use Caiocesar173\Utils\Abstracts\SeederAbstract;
 use Illuminate\Database\Eloquent\Model;
 
-class $NAME$ extends Seeder
+class $NAME$ extends SeederAbstract
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,6 @@ class $NAME$ extends Seeder
     public function run()
     {
         Model::unguard();
-
-        $this->call(PermissionTableSeeder::class);
+        $this->run(__DIR__."/permission.json");
     }
 }
