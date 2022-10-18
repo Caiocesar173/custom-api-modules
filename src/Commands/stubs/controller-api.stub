@@ -3,12 +3,11 @@
 namespace $CLASS_NAMESPACE$;
 
 use Caiocesar173\Utils\Abstracts\ServiceAbstract;
-use Caiocesar173\Utils\Abstracts\ApiControllerAbstract;
+use Caiocesar173\Utils\Abstracts\ControllerAbstract;
 
-use Modules\$MODULE$\Services\$SERVICE$;
+us Modules\$MODULE$\Services\$SERVICE$;
 
-
-class $CLASS$ extends ApiControllerAbstract
+class $CLASS$ extends ControllerAbstract
 {
     protected function getService(): ServiceAbstract
     {

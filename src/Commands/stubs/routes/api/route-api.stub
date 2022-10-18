@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 | 
 */
+
 Route::$MIDDLEWARE$prefix('$LOWER_MODULE$/')->as('$LOWER_MODULE$.')->group(function() {
-    Route::apiResource('$LOWER_CONTROLLER$', '$CONTROLLER$Controller');
-    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/audit'   ,['as' => '$LOWER_CONTROLLER$.audit'   ,'uses' => '$CONTROLLER$Controller@audit'   ]);
-    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/recover' ,['as' => '$LOWER_CONTROLLER$.recover' ,'uses' => '$CONTROLLER$Controller@recover' ]);
-    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/block'   ,['as' => '$LOWER_CONTROLLER$.block'   ,'uses' => '$CONTROLLER$Controller@block'   ]);
-    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/unblock' ,['as' => '$LOWER_CONTROLLER$.unblock' ,'uses' => '$CONTROLLER$Controller@unblock' ]);
+    Route::apiResource('$LOWER_CONTROLLER$', '$CONTROLLER$');
+    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/audit'   ,['as' => '$LOWER_CONTROLLER$.audit'   ,'uses' => '$CONTROLLER$@audit'   ]);
+    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/recover' ,['as' => '$LOWER_CONTROLLER$.recover' ,'uses' => '$CONTROLLER$@recover' ]);
+    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/block'   ,['as' => '$LOWER_CONTROLLER$.block'   ,'uses' => '$CONTROLLER$@block'   ]);
+    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/unblock' ,['as' => '$LOWER_CONTROLLER$.unblock' ,'uses' => '$CONTROLLER$@unblock' ]);
 });

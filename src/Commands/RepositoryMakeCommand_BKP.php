@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputArgument;
 
-class RepositoryMakeCommand extends Command
+class RepositoryMakeCommand_BKP extends Command
 {
 
     /**
@@ -40,7 +40,7 @@ class RepositoryMakeCommand extends Command
      */
     public function handle()
     {
-        if(!\Module::has($this->argument('module'))):
+        if (!\Module::has($this->argument('module'))) :
             return $this->error('the requested module could not be found');
         endif;
 
@@ -66,10 +66,9 @@ class RepositoryMakeCommand extends Command
         Artisan::call('make:repository', [
             'name' => $repository
         ]);
-        
-        app()->bind($interface, $eloquent);
-        $this->info( json_encode( config('repository.generator.paths')));
 
+        app()->bind($interface, $eloquent);
+        $this->info(json_encode(config('repository.generator.paths')));
     }
 
     /**

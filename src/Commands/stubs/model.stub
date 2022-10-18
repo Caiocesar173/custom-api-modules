@@ -4,12 +4,10 @@ namespace $NAMESPACE$;
 
 use Caiocesar173\Utils\Abstracts\ModelAbstract;
 
-
 class $CLASS$ extends ModelAbstract
 {
     protected $table = '$TABLE$';
     protected $primary = 'id';
     
     protected $fillable = $FILLABLE$;
-    
 }
