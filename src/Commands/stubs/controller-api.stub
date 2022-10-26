@@ -5,7 +5,7 @@ namespace $CLASS_NAMESPACE$;
 use Caiocesar173\Utils\Abstracts\ServiceAbstract;
 use Caiocesar173\Utils\Abstracts\ControllerAbstract;
 
-us Modules\$MODULE$\Services\$SERVICE$;
+use Modules\$MODULE$\Services\$SERVICE$;
 
 class $CLASS$ extends ControllerAbstract
 {

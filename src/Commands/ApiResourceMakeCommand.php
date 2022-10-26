@@ -2,15 +2,17 @@
 
 namespace Caiocesar173\Modules\Commands;
 
-use Caiocesar173\Modules\Support\Config\GenerateConfigReader;
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputArgument;
 
+use Nwidart\Modules\Module;
+
 use Caiocesar173\Utils\Enum\StatusEnum;
 use Caiocesar173\Utils\Enum\PermissionItemTypeEnum;
-use Caiocesar173\Utils\Abstracts\RepositoryAbstract;
+use Caiocesar173\Modules\Support\Config\GenerateConfigReader;
 
 class ApiResourceMakeCommand extends Command
 {
@@ -44,6 +46,8 @@ class ApiResourceMakeCommand extends Command
         $module = $this->argument('module');
         $fillable = $this->getFilable($name);
 
+        \Module::findOrFail($module);
+
         $permission_path = $this->getPermissionFilePath($module, 'permissions');
         $permission = $this->getPermissionClass($module, $name);
 
@@ -60,6 +64,7 @@ class ApiResourceMakeCommand extends Command
         Artisan::call("module:make-repository-interface $name $module", [], $this->getOutput());
         Artisan::call("module:make-repository-repositories $name $module", [], $this->getOutput());
         Artisan::call("module:make-route $name $module", [], $this->getOutput());
+        Artisan::call("module:make-factory $name $module", [], $this->getOutput());
     }
 
     protected function getArguments()
@@ -83,24 +88,22 @@ class ApiResourceMakeCommand extends Command
     /**
      * @return mixed|string
      */
-    private function saveModelToFile( $permissions, $path )
+    private function saveModelToFile($permissions, $path)
     {
-        if (file_exists($path)){
+        if (file_exists($path)) {
             $json = json_decode(file_get_contents($path));
             $permissions = json_decode(json_encode($permissions->permissions, true));
 
-            $json->permissions = ( array_merge(array_values($json->permissions), array_values($permissions)) );
-            
+            $json->permissions = (array_merge(array_values($json->permissions), array_values($permissions)));
+
             $file = file_put_contents($path,  json_encode($json, JSON_PRETTY_PRINT));
-            if($file != false)
-                echo("Created : $path\n");
-        }
-        else
-        {
+            if ($file != false)
+                echo ("Created : $path\n");
+        } else {
             $json = json_encode($permissions, JSON_PRETTY_PRINT);
             $file = file_put_contents("$path", $json);
-            if($file != false)
-                echo("Created : $path\n");
+            if ($file != false)
+                echo ("Created : $path\n");
         }
         return "Saving Permissions";
     }
@@ -111,7 +114,7 @@ class ApiResourceMakeCommand extends Command
     private function getPermissionClass($module, $name)
     {
         $namespace = $this->getPermissionFileNamespace($module);
-        $name = $this->getPermissionFileName("Permission");
+        $name = $this->getPermissionFileName($module);
 
         return "$namespace\\$name";
     }
@@ -144,8 +147,8 @@ class ApiResourceMakeCommand extends Command
         if (is_null($name))
             $name = 'Permission';
 
-        if (!str_contains($name, "TableSeeder"))
-            $name = $name . "TableSeeder";
+        if (!str_contains($name, "DatabaseSeeder"))
+            $name = $name . "DatabaseSeeder";
 
         return Str::studly($name);
     }

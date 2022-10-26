@@ -1,4 +1,6 @@
 <?php
+
+use $CONTROLLERNAMEMESPACE$\$CONTROLLER$;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 | 
 */
 
-Route::$MIDDLEWARE$prefix('$LOWER_MODULE$/')->as('$LOWER_MODULE$.')->group(function() {
-    Route::apiResource('$LOWER_CONTROLLER$', '$CONTROLLER$');
-    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/audit'   ,['as' => '$LOWER_CONTROLLER$.audit'   ,'uses' => '$CONTROLLER$@audit'   ]);
-    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/recover' ,['as' => '$LOWER_CONTROLLER$.recover' ,'uses' => '$CONTROLLER$@recover' ]);
-    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/block'   ,['as' => '$LOWER_CONTROLLER$.block'   ,'uses' => '$CONTROLLER$@block'   ]);
-    Route::get('$LOWER_CONTROLLER$/{$LOWER_NAME$}/unblock' ,['as' => '$LOWER_CONTROLLER$.unblock' ,'uses' => '$CONTROLLER$@unblock' ]);
+$controller = $CONTROLLER$::class;
+
+Route::$MIDDLEWARE$prefix("$LOWER_MODULE$/")->as("$LOWER_MODULE$.")->group(function () use ($controller) {
+    Route::apiResource("$LOWER_CONTROLLER$", $controller);
+    Route::get("$LOWER_CONTROLLER$/{$LOWER_NAME$}/audit"   ,["as" => "$LOWER_CONTROLLER$.audit"   ,"uses" => "$controller@audit"   ]);
+    Route::get("$LOWER_CONTROLLER$/{$LOWER_NAME$}/recover" ,["as" => "$LOWER_CONTROLLER$.recover" ,"uses" => "$controller@recover" ]);
+    Route::get("$LOWER_CONTROLLER$/{$LOWER_NAME$}/block"   ,["as" => "$LOWER_CONTROLLER$.block"   ,"uses" => "$controller@block"   ]);
+    Route::get("$LOWER_CONTROLLER$/{$LOWER_NAME$}/unblock" ,["as" => "$LOWER_CONTROLLER$.unblock" ,"uses" => "$controller@unblock" ]);
 });

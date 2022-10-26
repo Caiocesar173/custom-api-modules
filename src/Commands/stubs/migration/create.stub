@@ -15,7 +15,7 @@ class $CLASS$ extends Migration
      */
     public function up()
     {
-        Schema::create('$TABLE$', function (Blueprint $table) {
+        Schema::create('$TABLE$s', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $FIELDS$
             $table->enum('status', StatusEnum::lists())->default(StatusEnum::ACTIVE);
@@ -31,6 +31,6 @@ class $CLASS$ extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('$TABLE$');
+        Schema::dropIfExists('$TABLE$s');
     }
 }

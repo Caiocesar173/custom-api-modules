@@ -106,7 +106,7 @@ return [
             'migration'             => ['path' => 'Database/Migrations'     , 'generate' => true  ],
             'seeder'                => ['path' => 'Database/Seeders'        , 'generate' => true  ],
             'service'               => ['path' => 'Services'                , 'generate' => true  ],
-            'factory'               => ['path' => 'Database/factories'      , 'generate' => true  ],
+            'factory'               => ['path' => 'Database/Factories'      , 'generate' => true  ],
             'model'                 => ['path' => 'Entities'                , 'generate' => true  ],
             'routes'                => ['path' => 'Routes'                  , 'generate' => true  ],
             'controller'            => ['path' => 'Http/Controllers'        , 'generate' => true  ],
@@ -171,7 +171,6 @@ return [
         Commands\PolicyMakeCommand::class,
         Commands\RequestMakeCommand::class,
         
-        Commands\PermissionSeederMakeCommand::class,
         Commands\RepositoryMakeCommand::class,    
         Commands\RepositoryInterfacesMakeCommand::class,    
         Commands\RepositoryRepositoriesMakeCommand::class,    

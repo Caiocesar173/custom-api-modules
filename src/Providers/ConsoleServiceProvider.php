@@ -41,8 +41,6 @@ class ConsoleServiceProvider extends ServiceProvider
         Commands\RepositoryInterfacesMakeCommand::class,    
         Commands\RepositoryRepositoriesMakeCommand::class,    
         
-        Commands\PermissionSeederMakeCommand::class,
-
         Commands\RouteApiMakeCommand::class,
         Commands\RouteWebMakeCommand::class,
         Commands\RouteMakeCommand::class,

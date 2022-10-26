@@ -2,9 +2,9 @@
 
 namespace $NAMESPACE$;
 
-use Caiocesar173\Utils\Enum\CustomEnum;
+use Caiocesar173\Utils\Abstracts\EnumAbstract;
 
-class $NAME$ extends CustomEnum
+class $NAME$ extends EnumAbstract
 {
     public static function lists()
     {

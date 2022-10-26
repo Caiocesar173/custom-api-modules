@@ -3,11 +3,18 @@
 namespace $NAMESPACE$;
 
 use Caiocesar173\Utils\Abstracts\ModelAbstract;
+use $FACTORY_NAMESPACE$;
+use Illuminate\Database\Eloquent\Factories\Factory;w
 
 class $CLASS$ extends ModelAbstract
 {
-    protected $table = '$TABLE$';
+    protected $table = '$TABLE$s';
     protected $primary = 'id';
     
     protected $fillable = $FILLABLE$;
+
+    protected static function newFactory(): Factory
+    {
+        return $FACTORY_CLASS$::new();
+    }
 }

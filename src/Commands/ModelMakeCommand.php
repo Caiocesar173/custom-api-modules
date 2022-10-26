@@ -34,7 +34,7 @@ class ModelMakeCommand extends GeneratorCommand
      */
     protected $description = 'Create a new model for the specified module.';
 
-    public function handle() : int
+    public function handle(): int
     {
         if (parent::handle() === E_ERROR) {
             return E_ERROR;
@@ -58,7 +58,7 @@ class ModelMakeCommand extends GeneratorCommand
 
         $string = '';
         foreach ($pieces as $i => $piece) {
-            if ($i+1 < count($pieces)) {
+            if ($i + 1 < count($pieces)) {
                 $string .= strtolower($piece) . '_';
             } else {
                 $string .= Str::plural(strtolower($piece));
@@ -139,7 +139,26 @@ class ModelMakeCommand extends GeneratorCommand
             'MODULE'            => $this->getModuleName(),
             'STUDLY_NAME'       => $module->getStudlyName(),
             'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
+            'FACTORY_CLASS'     => $this->getFactoryClass(),
+            'FACTORY_NAMESPACE' => $this->getFactoryNamespace()
         ]))->render();
+    }
+
+    protected function getFactoryClass()
+    {
+        $module = $this->laravel['modules']->findOrFail($this->getModuleName());
+        $modelClass = $this->getClass($module);
+        return "{$modelClass}Factory";
+    }
+
+    protected function getFactoryNamespace()
+    {
+        $module = $this->laravel['modules']->findOrFail($this->getModuleName());
+        $moduleNamespace = $this->getModuleName();
+        $modelClass = $this->getFactoryClass();
+
+        $moduleNamespace = str_replace('/', '\\', $moduleNamespace);
+        return "Modules\\{$moduleNamespace}\\Database\\Factories\\{$modelClass}";
     }
 
     /**
@@ -169,13 +188,12 @@ class ModelMakeCommand extends GeneratorCommand
     {
         $fillable = $this->option('fillable');
 
-        if (!is_null($fillable)) 
-        {
-            if(is_array($fillable))
+        if (!is_null($fillable)) {
+            if (is_array($fillable))
                 return $fillable;
-            
+
             $arrays = explode(',', $fillable);
-            
+
             array_push($arrays,  'status');
             return json_encode($arrays);
         }
@@ -194,7 +212,7 @@ class ModelMakeCommand extends GeneratorCommand
 
         if (is_null($table))
             return strtolower($this->argument('model'));
-        
+
         return $table;
     }
 
@@ -203,7 +221,7 @@ class ModelMakeCommand extends GeneratorCommand
      *
      * @return string
      */
-    public function getDefaultNamespace() : string
+    public function getDefaultNamespace(): string
     {
         $module = $this->laravel['modules'];
 
