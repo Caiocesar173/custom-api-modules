@@ -72,7 +72,7 @@ class ConsoleServiceProvider extends ServiceProvider
         Commands\TestMakeCommand::class,
         Commands\LaravelModulesV6Migrator::class,
         Commands\ComponentClassMakeCommand::class,
-        Commands\ComponentViewMakeCommand::class,
+        Commands\ViewMakeCommand::class,
     ];
 
     public function register(): void

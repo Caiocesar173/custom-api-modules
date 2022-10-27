@@ -2,14 +2,16 @@
 
 namespace Caiocesar173\Modules\Commands;
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Str;
-use Caiocesar173\Modules\Support\Config\GenerateConfigReader;
 use Caiocesar173\Modules\Support\Stub;
 use Caiocesar173\Modules\Traits\ModuleCommandTrait;
+use Caiocesar173\Modules\Support\Config\GenerateConfigReader;
+
+use Illuminate\Support\Str;
+use Illuminate\Foundation\Inspiring;
+
 use Symfony\Component\Console\Input\InputArgument;
 
-class ComponentViewMakeCommand extends GeneratorCommand
+class ViewMakeCommand extends GeneratorCommand
 {
     use ModuleCommandTrait;
 
@@ -25,14 +27,14 @@ class ComponentViewMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'module:make-component-view';
+    protected $name = 'module:make-view';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new component-view for the specified module.';
+    protected $description = 'Create a new view for the specified module.';
 
     /**
      * Get the console command arguments.
@@ -52,7 +54,7 @@ class ComponentViewMakeCommand extends GeneratorCommand
      */
     protected function getTemplateContents()
     {
-        return (new Stub('/component-view.stub', ['QUOTE'=> Inspiring::quote()]))->render();
+        return (new Stub('/view.stub', ['QUOTE'=> Inspiring::quote()]))->render();
     }
 
     /**
@@ -61,7 +63,7 @@ class ComponentViewMakeCommand extends GeneratorCommand
     protected function getDestinationFilePath()
     {
         $path = $this->laravel['modules']->getModulePath($this->getModuleName());
-        $factoryPath = GenerateConfigReader::read('component-view');
+        $factoryPath = GenerateConfigReader::read('views');
 
         return $path . $factoryPath->getPath() . '/' . $this->getFileName();
     }

@@ -149,7 +149,7 @@ return [
     'commands' => [
         Commands\CommandMakeCommand::class,
         Commands\ComponentClassMakeCommand::class,
-        Commands\ComponentViewMakeCommand::class,
+        Commands\ViewMakeCommand::class,
         Commands\ControllerMakeCommand::class,
         Commands\DisableCommand::class,
         Commands\DumpCommand::class,
@@ -200,7 +200,6 @@ return [
         Commands\TestMakeCommand::class,
         Commands\LaravelModulesV6Migrator::class,
         Commands\ComponentClassMakeCommand::class,
-        Commands\ComponentViewMakeCommand::class,
     ],
 
     /*
