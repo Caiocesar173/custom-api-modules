@@ -4,7 +4,7 @@ namespace $NAMESPACE$;
 
 use Caiocesar173\Utils\Abstracts\ModelAbstract;
 use $FACTORY_NAMESPACE$;
-use Illuminate\Database\Eloquent\Factories\Factory;w
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class $CLASS$ extends ModelAbstract
 {
